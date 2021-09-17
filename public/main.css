@@ -1,0 +1,7 @@
+*{
+    color: white;
+}
+body{
+    background: no-repeat url("./wallpaper.png");
+    background-size: cover;
+}
