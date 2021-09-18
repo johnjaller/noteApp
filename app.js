@@ -4,18 +4,27 @@ const exphbs=require("express-handlebars")
 const basicAuth=require("express-basic-auth")
 const fs=require("fs")
 const path=require("path")
-const port = 3000
+const NoteService = require('./noteService.js')
+const NoteRouter=require("./noteRouter.js")
+const port = 8080
+
+const noteService= new NoteService("/data.json")
+const noteRouter=new NoteRouter(noteService)
 app.use(basicAuth({challenge:true,authorizer:myAuthroizer,authorizeAsync:true}))
 app.engine("handlebars",exphbs())
 app.set("view engine","handlebars")
 app.use(express.static("public"))
-
+app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) =>{
+    res.set("user","sam")
+    noteService.readNote("sam").then((userData)=>{
     res.render("home",{
-        username:"John"
+        username:"sam",
+        noteArr:userData
     })
+}).catch((err)=> {if(err) throw err})
 })
-// app.use("/api/notes",noteRouter.route())
+app.use("/api/notes",noteRouter.router())
 
 
 

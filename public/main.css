@@ -5,3 +5,11 @@ body{
     background: no-repeat url("./wallpaper.png");
     background-size: cover;
 }
+textarea{
+    color: black;
+    background-color: white;
+}
+
+li::hover  textarea{
+    background-color: wheat;
+}
