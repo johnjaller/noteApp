@@ -19,6 +19,7 @@ class NoteRouter{
     }
     post(req,res)
     {
+        console.log(req.body.note)
         return this.NoteService.addNote(req.body.note,req.auth.user).then(()=>{
             this.NoteService.readNote(req.auth.user).then((userData)=>{
                 res.json(userData)

@@ -2,11 +2,15 @@
 <p>Welcome home, {{username}}</p>
 <div class="row">
     <div class="col">
-        <button class="btn btn-success add-note">Add notes</button>
+        <input type="text" name="note" id="new-note" placeholder="Insert any text">
+        <button class="btn btn-primary add-note">Submit</button>
     </div>
 </div>
-<ol>
+<div class="note-list">
     {{#each noteArr}}
-   <li><textarea id="{{@index}}">{{this}}</textarea><button class="btn btn-danger delete-note"><i class="fas fa-trash-alt"></i></button></li>
+   <li class="note-item"><textarea id="{{@index}}" class="note-text">{{this}}</textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></li>
     {{/each}}
-</ol>
+</div>
+<template class="note-template">
+<li class="note-item"><textarea class="note-text"></textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></li>
+</template>
