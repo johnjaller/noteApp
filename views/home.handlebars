@@ -1,7 +1,12 @@
 <h1>MyNote Application</h1>
 <p>Welcome home, {{username}}</p>
-<ul>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-success add-note">Add notes</button>
+    </div>
+</div>
+<ol>
     {{#each noteArr}}
-   <li> <textarea>{{this}}</textarea></li>
+   <li><textarea id="{{@index}}">{{this}}</textarea><button class="btn btn-danger delete-note"><i class="fas fa-trash-alt"></i></button></li>
     {{/each}}
-</ul>
+</ol>

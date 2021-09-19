@@ -13,30 +13,32 @@ class NoteRouter{
     }
     get(req,res)
     {
-        return this.NoteService.readNote(req.headers.user).then((userData)=>{
+        return this.NoteService.readNote(req.auth.user).then((userData)=>{
             res.json(userData)
         }).catch((err)=> {if(err) throw err})
     }
     post(req,res)
     {
-        return this.NoteService.addNote(req.body.note,req.headers.user).then(()=>{
-            this.NoteService.readNote(req.headers.user).then((userData)=>{
+        return this.NoteService.addNote(req.body.note,req.auth.user).then(()=>{
+            this.NoteService.readNote(req.auth.user).then((userData)=>{
                 res.json(userData)
             })
         }).catch((err)=> {if(err) throw err})
     }
     put(req,res)
     {
-        return this.NoteService.editNote(req.body.note,req.params.index,req.headers.user).then(()=>{
-            this.NoteService.readNote(req.headers.user).then((userData)=>{
+        return this.NoteService.editNote(req.body.note,req.params.index,req.auth.user).then(()=>{
+            this.NoteService.readNote(req.auth.user).then((userData)=>{
                 res.json(userData)
             })
         }).catch((err)=> {if(err) throw err})
     }
     delete(req,res)
     {
-        return this.NoteService.deleteNote(req.params.index,req.headers.user).then(()=>{
-            this.NoteService.readNote(req.headers.user).then((userData)=>{
+        let index=Number(req.params.index)
+        console.log(req.auth.user)
+        return this.NoteService.deleteNote(index,req.auth.user).then(()=>{
+            this.NoteService.readNote(req.auth.user).then((userData)=>{
                 res.json(userData)
             })
         }).catch((err)=> {if(err) throw err})
