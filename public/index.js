@@ -7,7 +7,7 @@ $.ajax({
         console.log(data)
         deleteItem.fadeOut(500)
         setTimeout(()=>{getnote(data)
-        },2000)
+        },700)
         console.log("successfully submit data");
 
 
@@ -72,6 +72,8 @@ let changedText=$(this).val()
 function getnote(data){  
         console.log(data)
         $(".note-list").empty()
+       if(data.length!=0)
+       {
         data.forEach((item,index) => {
             let noteTemplate=$(".note-template").clone()
             let noteContainer=noteTemplate.contents().find("textarea")
@@ -80,5 +82,9 @@ function getnote(data){
             $(".note-list").append(noteTemplate.html())
             
         });
-        
+    }else{
+        $(".note-list").append("<h1>You currently don't have any note</h1>")
+
+    }
+    
 }

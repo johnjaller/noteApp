@@ -9,6 +9,7 @@ class NoteService{
     init()
     {
         let fileData= fs.readFileSync(__dirname+this.file,"utf-8")
+        console.log(fileData+" Hello world")
         if(fileData===undefined){
             this.note={}
         }else{
@@ -47,8 +48,13 @@ class NoteService{
     {
        return this.readData().then((data)=>{
            this.init()
+           
         let noteData=JSON.parse(data)
+        if(noteData===undefined){
+            return []
+        }else{
         return noteData[user]
+        }
         })
     }
     editNote(data,index,user)

@@ -1,16 +1,27 @@
 <h1>MyNote Application</h1>
 <p>Welcome home, {{username}}</p>
 <div class="row">
+    <div class="col-lg-12 col-xl-3 col-12 new-note-sec">
+        <div class="add-note-tool">
+        <textarea name="note" id="new-note" class="input" placeholder="Insert any text"></textarea>
+        <button class="btn btn-success add-note my-2">Submit</button>
+        </div>
+    </div>
+    <div class="col-lg-12 col-xl-9">
+<div class="note-list div row row-cols-lg-3 row-cols-1">
+    {{#if noteArr}}
+    {{#each noteArr}}
     <div class="col">
-        <input type="text" name="note" id="new-note" placeholder="Insert any text">
-        <button class="btn btn-primary add-note">Submit</button>
+   <div class="note-item "><textarea id="{{@index}}" class="note-text shadow">{{this}}</textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></div>
+   </div>
+    {{/each}}
+    {{else}}
+    <h1>You currently don't have any note</h1>
+    {{/if}}
+</div>
     </div>
 </div>
-<div class="note-list">
-    {{#each noteArr}}
-   <li class="note-item"><textarea id="{{@index}}" class="note-text">{{this}}</textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></li>
-    {{/each}}
-</div>
+
 <template class="note-template">
-<li class="note-item"><textarea class="note-text"></textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></li>
+<div class="note-item "><textarea class="note-text shadow"></textarea><button class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></button></div>
 </template>

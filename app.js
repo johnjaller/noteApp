@@ -19,6 +19,10 @@ app.use(express.static("public"))
 app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) =>{
     noteService.readNote(req.auth.user).then((userData)=>{
+        if(userData===undefined)
+        {
+            userData=[]
+        }
     res.render("home",{
         username:req.auth.user,
         noteArr:userData
