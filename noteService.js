@@ -21,6 +21,7 @@ class NoteService{
         return new Promise((resolve,reject)=>{
             fs.readFile(__dirname+this.file,"utf-8",(err,data)=>{
                 if (err) reject(err)
+
                 resolve(data)
             })
         })
@@ -50,7 +51,7 @@ class NoteService{
            this.init()
            
         let noteData=JSON.parse(data)
-        if(noteData===undefined){
+        if(noteData[user]===undefined){
             return []
         }else{
         return noteData[user]

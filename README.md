@@ -9,5 +9,6 @@
 ## Instruction:
 1. clone this project
 2. ```cd <repository>``` and perform ```npm install``` to install necessary component
-3. Feel free to give it a try
+3. navigate to ```localhost:8080``` on your browser
+4. Feel free to give it a try
 ## Issues and Resolutions :

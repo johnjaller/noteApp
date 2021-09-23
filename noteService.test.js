@@ -72,6 +72,12 @@ test("readNote(data,user) should return specific note to respective user", async
    await expect(noteService.readNote(user)).resolves.toEqual(["awesome", "a", "fucking ", "asda", "dasd"]);
 
 })
+test("readNote(data,user) should return specific note to new user", async() => {
+  let user = "ken";
+  
+ await expect(noteService.readNote(user)).resolves.toEqual([]);
+
+})
 test("editNote(data,user) should change data to respective user ", () => {
     let spyOnWriteData=jest.spyOn(noteService,"writeData")
     spyOnWriteData.mockImplementation((data)=> console.log(data))
